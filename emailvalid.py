@@ -11,7 +11,7 @@ class MailtesterSingle():
     def __init__(self, key, email):
         self.key = key
         self.email = email
-        self.verif = "https://app.mailtester.com/api/verifEmail?secret="
+        self.verif = "https://api.mailtester.com/api/singlemail?secret="
         self.url = self.verif+self.key+"&email="+self.email
 
     
@@ -27,7 +27,7 @@ class MailtesterBulk():
         self.key = key
         self.name = 'File' + datenow.strftime("%Y-%m-%d %H:%M")
         self.user_file = user_file
-        self.url = 'https://app.mailtester.com/api/verifApiFile?secret='+key+'&filename=%s' % self.name
+        self.url = 'https://api.mailtester.com/api/bulk?secret='+key+'&filename=%s' % self.name
 
 
     def upload(self):
@@ -51,7 +51,7 @@ class MailtesterBulk():
        
         with open('id_file','r') as f:
             ids = f.read()
-        url = 'https://app.mailtester.com/api/getApiFileInfo?secret='+self.key+'&id=%s' % ids
+        url = 'https://api.mailtester.com/api/details?secret='+self.key+'&id=%s' % ids
         r = requests.get(url)
         with open('result.txt', 'a') as res:
             res.write(r.content+'\n')
